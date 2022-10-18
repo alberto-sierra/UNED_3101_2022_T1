@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="3101_tarea1_mvc/Models/Estudiante.cs">
+    <Files>
+      <File FileName="3101_tarea1_mvc/Models/Estudiante.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="3101_tarea1_mvc" expanded="True">
+            <Node name="3101_tarea1_mvc" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="Estudiante.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>
