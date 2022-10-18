@@ -1,10 +1,8 @@
-﻿<Properties StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+﻿<Properties StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default" GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="3101_tarea1_mvc/Models/Estudiante.cs">
     <Files>
