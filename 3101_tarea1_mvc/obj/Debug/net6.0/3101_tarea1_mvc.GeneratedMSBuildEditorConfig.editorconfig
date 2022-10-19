@@ -15,6 +15,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Curso/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3Vyc28vQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Curso/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3Vyc28vRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Curso/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3Vyc28vRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Curso/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3Vyc28vRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Curso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ3Vyc28vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Estudiante/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXN0dWRpYW50ZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -37,6 +57,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Matricula/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWF0cmljdWxhL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Matricula/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWF0cmljdWxhL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Matricula/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWF0cmljdWxhL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Matricula/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWF0cmljdWxhL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Matricula/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWF0cmljdWxhL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Views/Shared/Error.cshtml]

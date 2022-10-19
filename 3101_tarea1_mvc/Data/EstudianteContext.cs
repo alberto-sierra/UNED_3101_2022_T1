@@ -13,4 +13,8 @@ using _3101_tarea1_mvc.Models;
         }
 
         public DbSet<_3101_tarea1_mvc.Models.Estudiante> Estudiante { get; set; } = default!;
+
+        public DbSet<_3101_tarea1_mvc.Models.Curso>? Curso { get; set; }
+
+        public DbSet<_3101_tarea1_mvc.Models.Matricula>? Matricula { get; set; }
     }

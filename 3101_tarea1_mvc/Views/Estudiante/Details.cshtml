@@ -1,13 +1,12 @@
 @model _3101_tarea1_mvc.Models.Estudiante
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Estudiante " + @Html.DisplayNameFor(model => model.id);
 }
 
-<h1>Details</h1>
+<h1>Detalles del Estudiante</h1>
 
 <div>
-    <h4>Estudiante</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -43,6 +42,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Modificar" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Regresar</a>
 </div>
