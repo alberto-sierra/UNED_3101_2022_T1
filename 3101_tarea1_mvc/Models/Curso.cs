@@ -25,10 +25,10 @@ namespace _3101_tarea1_mvc.Models
         [Display(Name = "Descripción")]
         public string descripcion { get; set; }
 
-        [ForeignKey("Carrera.codig")]
+        [ForeignKey("Carrera")]
         [Required]
         [Display(Name = "Carrera")]
-        public string carrera { get; set; }
+        public int carrera { get; set; }
 
         [ForeignKey("EstadoDescripcion")]
         [Required]

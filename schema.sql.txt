@@ -30,7 +30,7 @@ create table curso (
   codigo varchar(5) UNIQUE NOT NULL,
   nombre varchar(100) NOT NULL,
   descripcion varchar(255),
-  carrera varchar(5) FOREIGN KEY REFERENCES carrera(codigo),
+  carrera int FOREIGN KEY REFERENCES carrera(id),
   estado tinyint FOREIGN KEY REFERENCES estado_descripcion(id),
   precio money NOT NULL
 )
@@ -47,7 +47,7 @@ create table matricula (
 create table matricula_detalle (
   id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
   idMatricula int FOREIGN KEY REFERENCES matricula(id),
-  idCurso int FOREIGN KEY REFERENCES curso(codigo),
+  idCurso int FOREIGN KEY REFERENCES curso(id),
 )
 
 insert into estudiante values ('800910533', 'Alberto', 'Sierra', 'Reales', '1981-09-29 00:00:00', GETDATE())
