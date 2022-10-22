@@ -1,21 +1,50 @@
-﻿<Properties StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default" GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="3101_tarea1_mvc/Models/Estudiante.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="3101_tarea1_mvc/Data/UniversidadContext.cs">
     <Files>
-      <File FileName="3101_tarea1_mvc/Models/Estudiante.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Views/Curso/Index.cshtml" Line="7" Column="23" />
+      <File FileName="3101_tarea1_mvc/Views/Curso/Create.cshtml" Line="7" Column="23" />
+      <File FileName="3101_tarea1_mvc/Views/Curso/Delete.cshtml" Line="8" Column="6" />
+      <File FileName="3101_tarea1_mvc/Views/Curso/Details.cshtml" Line="4" Column="49" />
+      <File FileName="3101_tarea1_mvc/Views/Curso/Edit.cshtml" Line="43" Column="35" />
+      <File FileName="3101_tarea1_mvc/Views/Shared/_Layout.cshtml" Line="29" Column="94" />
+      <File FileName="3101_tarea1_mvc/Views/Home/Index.cshtml" Line="10" Column="1" />
+      <File FileName="3101_tarea1_mvc/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Views/Shared/Error.cshtml" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/appsettings.json" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Program.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Controllers/HomeController.cs" Line="5" Column="40" />
+      <File FileName="3101_tarea1_mvc/Controllers/EstudianteController.cs" Line="10" Column="39" />
+      <File FileName="3101_tarea1_mvc/Models/Curso.cs" Line="29" Column="1" />
+      <File FileName="3101_tarea1_mvc/Entities/Curso.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Controllers/CursoController.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Views/Estudiante/Index.cshtml" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Models/Carrera.cs" Line="8" Column="18" />
+      <File FileName="3101_tarea1_mvc/Models/ErrorViewModel.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Models/Escuela.cs" Line="22" Column="1" />
+      <File FileName="3101_tarea1_mvc/Models/EstadoDescripcion.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Models/Estudiante.cs" Line="44" Column="2" />
+      <File FileName="3101_tarea1_mvc/Models/Matricula.cs" Line="18" Column="44" />
+      <File FileName="3101_tarea1_mvc/Models/MatriculaDetalle.cs" Line="18" Column="1" />
+      <File FileName="3101_tarea1_mvc/Entities/Carrera.cs" Line="8" Column="16" />
+      <File FileName="3101_tarea1_mvc/Data/UniversidadContext.cs" Line="11" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="3101_tarea1_mvc" expanded="True">
             <Node name="3101_tarea1_mvc" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="Estudiante.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Entities" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -25,4 +54,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
+  <MultiItemStartupConfigurations />
 </Properties>

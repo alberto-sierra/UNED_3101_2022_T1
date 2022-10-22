@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using _3101_tarea1_mvc.Data;
 using _3101_tarea1_mvc.Models;
 
 namespace _3101_tarea1_mvc.Controllers
 {
     public class MatriculaController : Controller
     {
-        private readonly EstudianteContext _context;
+        private readonly UniversidadContext _context;
 
-        public MatriculaController(EstudianteContext context)
+        public MatriculaController(UniversidadContext context)
         {
             _context = context;
         }
@@ -21,27 +22,27 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Matricula
         public async Task<IActionResult> Index()
         {
-              return _context.Matricula != null ? 
-                          View(await _context.Matricula.ToListAsync()) :
-                          Problem("Entity set 'EstudianteContext.Matricula'  is null.");
+              return _context.MatriculaModel != null ? 
+                          View(await _context.MatriculaModel.ToListAsync()) :
+                          Problem("Entity set 'UniversidadContext.MatriculaModel'  is null.");
         }
 
         // GET: Matricula/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Matricula == null)
+            if (id == null || _context.MatriculaModel == null)
             {
                 return NotFound();
             }
 
-            var matricula = await _context.Matricula
+            var matriculaModel = await _context.MatriculaModel
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (matricula == null)
+            if (matriculaModel == null)
             {
                 return NotFound();
             }
 
-            return View(matricula);
+            return View(matriculaModel);
         }
 
         // GET: Matricula/Create
@@ -55,31 +56,31 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,idEstudiante,fecha,periodo,estado,total")] Matricula matricula)
+        public async Task<IActionResult> Create([Bind("id,fecha")] MatriculaModel matriculaModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(matricula);
+                _context.Add(matriculaModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(matricula);
+            return View(matriculaModel);
         }
 
         // GET: Matricula/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Matricula == null)
+            if (id == null || _context.MatriculaModel == null)
             {
                 return NotFound();
             }
 
-            var matricula = await _context.Matricula.FindAsync(id);
-            if (matricula == null)
+            var matriculaModel = await _context.MatriculaModel.FindAsync(id);
+            if (matriculaModel == null)
             {
                 return NotFound();
             }
-            return View(matricula);
+            return View(matriculaModel);
         }
 
         // POST: Matricula/Edit/5
@@ -87,9 +88,9 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,idEstudiante,fecha,periodo,estado,total")] Matricula matricula)
+        public async Task<IActionResult> Edit(int id, [Bind("id,fecha")] MatriculaModel matriculaModel)
         {
-            if (id != matricula.id)
+            if (id != matriculaModel.id)
             {
                 return NotFound();
             }
@@ -98,12 +99,12 @@ namespace _3101_tarea1_mvc.Controllers
             {
                 try
                 {
-                    _context.Update(matricula);
+                    _context.Update(matriculaModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MatriculaExists(matricula.id))
+                    if (!MatriculaModelExists(matriculaModel.id))
                     {
                         return NotFound();
                     }
@@ -114,25 +115,25 @@ namespace _3101_tarea1_mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(matricula);
+            return View(matriculaModel);
         }
 
         // GET: Matricula/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Matricula == null)
+            if (id == null || _context.MatriculaModel == null)
             {
                 return NotFound();
             }
 
-            var matricula = await _context.Matricula
+            var matriculaModel = await _context.MatriculaModel
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (matricula == null)
+            if (matriculaModel == null)
             {
                 return NotFound();
             }
 
-            return View(matricula);
+            return View(matriculaModel);
         }
 
         // POST: Matricula/Delete/5
@@ -140,23 +141,23 @@ namespace _3101_tarea1_mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Matricula == null)
+            if (_context.MatriculaModel == null)
             {
-                return Problem("Entity set 'EstudianteContext.Matricula'  is null.");
+                return Problem("Entity set 'UniversidadContext.MatriculaModel'  is null.");
             }
-            var matricula = await _context.Matricula.FindAsync(id);
-            if (matricula != null)
+            var matriculaModel = await _context.MatriculaModel.FindAsync(id);
+            if (matriculaModel != null)
             {
-                _context.Matricula.Remove(matricula);
+                _context.MatriculaModel.Remove(matriculaModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MatriculaExists(int id)
+        private bool MatriculaModelExists(int id)
         {
-          return (_context.Matricula?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.MatriculaModel?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

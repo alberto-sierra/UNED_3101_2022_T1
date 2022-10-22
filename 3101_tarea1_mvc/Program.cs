@@ -1,8 +1,9 @@
+using _3101_tarea1_mvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<EstudianteContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EstudianteContext") ?? throw new InvalidOperationException("Connection string 'EstudianteContext' not found.")));
+builder.Services.AddDbContext<UniversidadContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UniversidadContext") ?? throw new InvalidOperationException("Connection string 'UniversidadContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

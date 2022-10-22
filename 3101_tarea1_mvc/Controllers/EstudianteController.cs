@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using _3101_tarea1_mvc.Data;
 using _3101_tarea1_mvc.Models;
+using _3101_tarea1_mvc.Entities;
 
 namespace _3101_tarea1_mvc.Controllers
 {
     public class EstudianteController : Controller
     {
-        private readonly EstudianteContext _context;
+        private readonly UniversidadContext _context;
 
-        public EstudianteController(EstudianteContext context)
+        public EstudianteController(UniversidadContext context)
         {
             _context = context;
         }
@@ -21,27 +23,44 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Estudiante
         public async Task<IActionResult> Index()
         {
-              return _context.Estudiante != null ? 
-                          View(await _context.Estudiante.ToListAsync()) :
-                          Problem("Entity set 'EstudianteContext.Estudiante'  is null.");
+              return _context.EstudianteModel != null ? 
+                          View(await _context.Estudiantes.Select(x => new EstudianteModel
+                          {
+                              id = x.Id,
+                              identificacion = x.Identificacion,
+                              nombre = x.Nombre,
+                              primerApellido = x.PrimerApellido,
+                              segundoApellido = x.SegundoApellido,
+                              fechaNacimiento = x.FechaNacimiento,
+                              fechaIngreso = x.FechaIngreso
+                          }).ToListAsync()) :
+                          Problem("Entity set 'UniversidadContext.EstudianteModel'  is null.");
         }
 
         // GET: Estudiante/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Estudiante == null)
+            if (id == null || _context.EstudianteModel == null)
             {
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiante
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (estudiante == null)
+            var estudianteModel = await _context.Estudiantes.Select(x => new EstudianteModel
+            {
+                id = x.Id,
+                identificacion = x.Identificacion,
+                nombre = x.Nombre,
+                primerApellido = x.PrimerApellido,
+                segundoApellido = x.SegundoApellido,
+                fechaNacimiento = x.FechaNacimiento,
+                fechaIngreso = x.FechaIngreso
+            }).FirstOrDefaultAsync(m => m.id == id);
+            if (estudianteModel == null)
             {
                 return NotFound();
             }
 
-            return View(estudiante);
+            return View(estudianteModel);
         }
 
         // GET: Estudiante/Create
@@ -55,31 +74,51 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nombre,primerApellido,segundoApellido,fechaNacimiento,fechaIngreso")] Estudiante estudiante)
+        public async Task<IActionResult> Create([Bind("id,identificacion,nombre,primerApellido,segundoApellido,fechaNacimiento,fechaIngreso")] EstudianteModel estudianteModel)
         {
             if (ModelState.IsValid)
             {
+                var estudiante = new Estudiante
+                {
+                    Id = estudianteModel.id,
+                    Identificacion = estudianteModel.identificacion,
+                    Nombre = estudianteModel.nombre,
+                    PrimerApellido = estudianteModel.primerApellido,
+                    SegundoApellido = estudianteModel.segundoApellido,
+                    FechaNacimiento = estudianteModel.fechaNacimiento,
+                    FechaIngreso = estudianteModel.fechaIngreso
+                };
                 _context.Add(estudiante);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudiante);
+            return View(estudianteModel);
         }
 
         // GET: Estudiante/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(long id)
         {
-            if (id == null || _context.Estudiante == null)
+            if (id == null || _context.Estudiantes == null)
             {
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiante.FindAsync(id);
+            var estudiante = await _context.Estudiantes.FindAsync(id);
             if (estudiante == null)
             {
                 return NotFound();
             }
-            return View(estudiante);
+            var estudianteModel = new EstudianteModel
+            {
+                id = estudiante.Id,
+                identificacion = estudiante.Identificacion,
+                nombre = estudiante.Nombre,
+                primerApellido = estudiante.PrimerApellido,
+                segundoApellido = estudiante.SegundoApellido,
+                fechaNacimiento = estudiante.FechaNacimiento,
+                fechaIngreso = estudiante.FechaIngreso
+            };
+            return View(estudianteModel);
         }
 
         // POST: Estudiante/Edit/5
@@ -87,9 +126,9 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("id,nombre,primerApellido,segundoApellido,fechaNacimiento,fechaIngreso")] Estudiante estudiante)
+        public async Task<IActionResult> Edit(int id, [Bind("id,identificacion,nombre,primerApellido,segundoApellido,fechaNacimiento,fechaIngreso")] EstudianteModel estudianteModel)
         {
-            if (id != estudiante.id)
+            if (id != estudianteModel.id)
             {
                 return NotFound();
             }
@@ -98,12 +137,21 @@ namespace _3101_tarea1_mvc.Controllers
             {
                 try
                 {
+                    var estudiante = new Estudiante
+                    {
+                        Id = estudianteModel.id,
+                        Identificacion = estudianteModel.identificacion,
+                        Nombre = estudianteModel.nombre,
+                        SegundoApellido = estudianteModel.segundoApellido,
+                        FechaNacimiento = estudianteModel.fechaNacimiento,
+                        FechaIngreso = estudianteModel.fechaIngreso
+                    };
                     _context.Update(estudiante);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstudianteExists(estudiante.id))
+                    if (!EstudianteModelExists(estudianteModel.id))
                     {
                         return NotFound();
                     }
@@ -114,49 +162,57 @@ namespace _3101_tarea1_mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudiante);
+            return View(estudianteModel);
         }
 
         // GET: Estudiante/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(long id)
         {
-            if (id == null || _context.Estudiante == null)
+            if (id == null || _context.EstudianteModel == null)
             {
                 return NotFound();
             }
 
-            var estudiante = await _context.Estudiante
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (estudiante == null)
+            var estudianteModel = await _context.Estudiantes.Select(x => new EstudianteModel
+            {
+                id = x.Id,
+                identificacion = x.Identificacion,
+                nombre = x.Nombre,
+                primerApellido = x.PrimerApellido,
+                segundoApellido = x.SegundoApellido,
+                fechaNacimiento = x.FechaNacimiento,
+                fechaIngreso = x.FechaIngreso
+            }).FirstOrDefaultAsync(m => m.id == id);
+            if (estudianteModel == null)
             {
                 return NotFound();
             }
 
-            return View(estudiante);
+            return View(estudianteModel);
         }
 
         // POST: Estudiante/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            if (_context.Estudiante == null)
+            if (_context.Estudiantes == null)
             {
-                return Problem("Entity set 'EstudianteContext.Estudiante'  is null.");
+                return Problem("Entity set 'UniversidadContext.Estudiantes'  is null.");
             }
-            var estudiante = await _context.Estudiante.FindAsync(id);
+            var estudiante = await _context.Estudiantes.FindAsync(id);
             if (estudiante != null)
             {
-                _context.Estudiante.Remove(estudiante);
+                _context.Estudiantes.Remove(estudiante);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstudianteExists(string id)
+        private bool EstudianteModelExists(long id)
         {
-          return (_context.Estudiante?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.EstudianteModel?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

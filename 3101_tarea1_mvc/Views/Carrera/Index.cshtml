@@ -1,4 +1,4 @@
-@model IEnumerable<_3101_tarea1_mvc.Models.CursoModel>
+@model IEnumerable<_3101_tarea1_mvc.Models.CarreraModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -19,10 +19,7 @@
                 @Html.DisplayNameFor(model => model.nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.precio)
+                @Html.DisplayNameFor(model => model.IdEscuelaNavigation.Nombre)
             </th>
             <th></th>
         </tr>
@@ -37,10 +34,7 @@
                 @Html.DisplayFor(modelItem => item.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio)
+                @Html.DisplayFor(modelItem => item.IdEscuelaNavigation.Nombre)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

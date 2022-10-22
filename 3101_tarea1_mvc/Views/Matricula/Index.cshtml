@@ -1,4 +1,4 @@
-@model IEnumerable<_3101_tarea1_mvc.Models.Matricula>
+@model IEnumerable<_3101_tarea1_mvc.Models.MatriculaModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idEstudiante)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.periodo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.total)
             </th>
             <th></th>
         </tr>
@@ -34,19 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.idEstudiante)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.periodo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.total)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

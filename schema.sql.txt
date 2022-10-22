@@ -1,28 +1,24 @@
 create table estudiante (
-  id varchar(9) PRIMARY KEY not null,
-  nombre varchar(50),
-  primerApellido varchar(50),
-  segundoApellido varchar(50),
-  fechaNacimiento datetime,
+  id bigint IDENTITY(1,1) PRIMARY KEY not null,
+  identificacion varchar(9) UNIQUE NOT NULL,
+  nombre varchar(50) NOT NULL,
+  primerApellido varchar(50) NOT NULL,
+  segundoApellido varchar(50) NOT NULL,
+  fechaNacimiento datetime NOT NULL,
   fechaIngreso datetime
 )
 
 create table escuela (
-  id tinyint IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
   codigo varchar(5) UNIQUE NOT NULL,
-  nombre varchar(50)
+  nombre varchar(100)
 )
 
 create table carrera (
   id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
   codigo varchar(5) UNIQUE NOT NULL,
-  escuela varchar(5) FOREIGN KEY REFERENCES escuela(codigo),
+  idEscuela varchar(5) FOREIGN KEY REFERENCES escuela(id),
   nombre varchar(100)
-)
-
-create table estado_descripcion (
-  id tinyint PRIMARY KEY NOT NULL,
-  descripcion varchar(25)
 )
 
 create table curso (
@@ -30,18 +26,14 @@ create table curso (
   codigo varchar(5) UNIQUE NOT NULL,
   nombre varchar(100) NOT NULL,
   descripcion varchar(255),
-  carrera int FOREIGN KEY REFERENCES carrera(id),
-  estado tinyint FOREIGN KEY REFERENCES estado_descripcion(id),
+  idCarrera int FOREIGN KEY REFERENCES carrera(id),
   precio money NOT NULL
 )
 
 create table matricula (
   id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
   idEstudiante varchar(9) FOREIGN KEY REFERENCES estudiante(id),
-  fecha datetime,
-  periodo varchar(6),
-  estado tinyint FOREIGN KEY REFERENCES estado_descripcion(id),
-  total money NOT NULL
+  fecha datetime NOT NULL
 )
 
 create table matricula_detalle (

@@ -10,87 +10,87 @@ using _3101_tarea1_mvc.Models;
 
 namespace _3101_tarea1_mvc.Controllers
 {
-    public class CursoController : Controller
+    public class EscuelaController : Controller
     {
         private readonly UniversidadContext _context;
 
-        public CursoController(UniversidadContext context)
+        public EscuelaController(UniversidadContext context)
         {
             _context = context;
         }
 
-        // GET: Curso
+        // GET: Escuela
         public async Task<IActionResult> Index()
         {
-              return _context.CursoModel != null ? 
-                          View(await _context.CursoModel.ToListAsync()) :
-                          Problem("Entity set 'UniversidadContext.CursoModel'  is null.");
+              return _context.EscuelaModel != null ? 
+                          View(await _context.EscuelaModel.ToListAsync()) :
+                          Problem("Entity set 'UniversidadContext.EscuelaModel'  is null.");
         }
 
-        // GET: Curso/Details/5
+        // GET: Escuela/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.CursoModel == null)
+            if (id == null || _context.EscuelaModel == null)
             {
                 return NotFound();
             }
 
-            var cursoModel = await _context.CursoModel
+            var escuelaModel = await _context.EscuelaModel
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (cursoModel == null)
+            if (escuelaModel == null)
             {
                 return NotFound();
             }
 
-            return View(cursoModel);
+            return View(escuelaModel);
         }
 
-        // GET: Curso/Create
+        // GET: Escuela/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Curso/Create
+        // POST: Escuela/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,codigo,nombre,descripcion,precio")] CursoModel cursoModel)
+        public async Task<IActionResult> Create([Bind("id,codigo,nombre")] EscuelaModel escuelaModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cursoModel);
+                _context.Add(escuelaModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cursoModel);
+            return View(escuelaModel);
         }
 
-        // GET: Curso/Edit/5
+        // GET: Escuela/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.CursoModel == null)
+            if (id == null || _context.EscuelaModel == null)
             {
                 return NotFound();
             }
 
-            var cursoModel = await _context.CursoModel.FindAsync(id);
-            if (cursoModel == null)
+            var escuelaModel = await _context.EscuelaModel.FindAsync(id);
+            if (escuelaModel == null)
             {
                 return NotFound();
             }
-            return View(cursoModel);
+            return View(escuelaModel);
         }
 
-        // POST: Curso/Edit/5
+        // POST: Escuela/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,codigo,nombre,descripcion,precio")] CursoModel cursoModel)
+        public async Task<IActionResult> Edit(int id, [Bind("id,codigo,nombre")] EscuelaModel escuelaModel)
         {
-            if (id != cursoModel.id)
+            if (id != escuelaModel.id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace _3101_tarea1_mvc.Controllers
             {
                 try
                 {
-                    _context.Update(cursoModel);
+                    _context.Update(escuelaModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CursoModelExists(cursoModel.id))
+                    if (!EscuelaModelExists(escuelaModel.id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace _3101_tarea1_mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cursoModel);
+            return View(escuelaModel);
         }
 
-        // GET: Curso/Delete/5
+        // GET: Escuela/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.CursoModel == null)
+            if (id == null || _context.EscuelaModel == null)
             {
                 return NotFound();
             }
 
-            var cursoModel = await _context.CursoModel
+            var escuelaModel = await _context.EscuelaModel
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (cursoModel == null)
+            if (escuelaModel == null)
             {
                 return NotFound();
             }
 
-            return View(cursoModel);
+            return View(escuelaModel);
         }
 
-        // POST: Curso/Delete/5
+        // POST: Escuela/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.CursoModel == null)
+            if (_context.EscuelaModel == null)
             {
-                return Problem("Entity set 'UniversidadContext.CursoModel'  is null.");
+                return Problem("Entity set 'UniversidadContext.EscuelaModel'  is null.");
             }
-            var cursoModel = await _context.CursoModel.FindAsync(id);
-            if (cursoModel != null)
+            var escuelaModel = await _context.EscuelaModel.FindAsync(id);
+            if (escuelaModel != null)
             {
-                _context.CursoModel.Remove(cursoModel);
+                _context.EscuelaModel.Remove(escuelaModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CursoModelExists(int id)
+        private bool EscuelaModelExists(int id)
         {
-          return (_context.CursoModel?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.EscuelaModel?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
