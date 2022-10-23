@@ -23,32 +23,42 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Carrera
         public async Task<IActionResult> Index()
         {
-              return _context.CarreraModel != null ? 
-                          View(await _context.Carreras.Select(x => new CarreraModel
-                          {
-                              id = x.Id,
-                              codigo = x.Codigo,
-                              nombre = x.Nombre!,
-                              idEscuela = x.IdEscuela
-                          }).ToListAsync()) :
-                          Problem("Entity set 'UniversidadContext.Carreras'  is null.");
+            List<SelectListItem> DropDownEscuela = _context.Escuelas.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
+            var carreraModel = await _context.Carreras
+                .Include(x => x.IdEscuelaNavigation)
+                .Select(x => new CarreraModel
+                {
+                    Id = x.Id,
+                    Codigo = x.Codigo,
+                    Nombre = x.Nombre!,
+                    NombreEscuela = x.IdEscuelaNavigation.Nombre,
+                    OpEscuela = DropDownEscuela
+                }).ToListAsync();
+
+            return View(carreraModel);
+
         }
 
         // GET: Carrera/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.CarreraModel == null)
+            if (id == null || _context.Carreras == null)
             {
                 return NotFound();
             }
 
-            var carreraModel = await _context.Carreras.Select(x => new CarreraModel
+            var carreraModel = await _context.Carreras.Include(x => x.IdEscuelaNavigation).Select(x => new CarreraModel
             {
-                id = x.Id,
-                codigo = x.Codigo,
-                nombre = x.Nombre!,
-                idEscuela = x.IdEscuela
-            }).FirstOrDefaultAsync(m => m.id == id);
+                Id = x.Id,
+                Codigo = x.Codigo,
+                Nombre = x.Nombre!,
+                IdEscuela = x.Id,
+            }).FirstOrDefaultAsync(m => m.Id == id);
             if (carreraModel == null)
             {
                 return NotFound();
@@ -60,7 +70,18 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Carrera/Create
         public IActionResult Create()
         {
-            return View();
+            List<SelectListItem> DropDownEscuela = _context.Escuelas.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
+            var carreraModel = new CarreraModel
+            {
+                OpEscuela = DropDownEscuela
+            };
+
+            return View(carreraModel);
         }
 
         // POST: Carrera/Create
@@ -68,16 +89,17 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,codigo,nombre")] CarreraModel carreraModel)
+        public async Task<IActionResult> Create([Bind("Id,Codigo,Nombre,IdEscuela")] CarreraModel carreraModel)
         {
+            ModelState.Remove("OpEscuela");
+            ModelState.Remove("NombreEscuela");
             if (ModelState.IsValid)
             {
                 var carrera = new Carrera
                 {
-                    Id = carreraModel.id,
-                    Codigo = carreraModel.codigo,
-                    Nombre = carreraModel.nombre,
-                    IdEscuela = carreraModel.idEscuela
+                    Codigo = carreraModel.Codigo,
+                    Nombre = carreraModel.Nombre,
+                    IdEscuela = carreraModel.IdEscuela
                 };
                 _context.Add(carrera);
                 await _context.SaveChangesAsync();
@@ -99,12 +121,20 @@ namespace _3101_tarea1_mvc.Controllers
             {
                 return NotFound();
             }
+
+            List<SelectListItem> DropDownEscuela = _context.Escuelas.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
             var carreraModel = new CarreraModel
             {
-                id = carrera.Id,
-                codigo = carrera.Codigo,
-                nombre = carrera.Nombre,
-                idEscuela = carrera.IdEscuela
+                Id = carrera.Id,
+                Codigo = carrera.Codigo,
+                Nombre = carrera.Nombre,
+                IdEscuela = carrera.IdEscuela,
+                OpEscuela = DropDownEscuela
             };
             return View(carreraModel);
         }
@@ -114,21 +144,23 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,codigo,nombre")] CarreraModel carreraModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Codigo,Nombre,IdEscuela")] CarreraModel carreraModel)
         {
-            if (id != carreraModel.id)
+            if (id != carreraModel.Id)
             {
                 return NotFound();
             }
 
+            ModelState.Remove("OpEscuela");
+            ModelState.Remove("NombreEscuela");
             if (ModelState.IsValid)
             {
                 Carrera carrera = new Carrera
                 {
-                    Id = carreraModel.id,
-                    Codigo = carreraModel.codigo,
-                    Nombre = carreraModel.nombre,
-                    IdEscuela = carreraModel.idEscuela
+                    Id = carreraModel.Id,
+                    Codigo = carreraModel.Codigo,
+                    Nombre = carreraModel.Nombre,
+                    IdEscuela = carreraModel.IdEscuela,
                 };
                 try
                 {
@@ -137,7 +169,7 @@ namespace _3101_tarea1_mvc.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CarreraModelExists(carreraModel.id))
+                    if (!CarreraModelExists(carreraModel.Id))
                     {
                         return NotFound();
                     }
@@ -148,24 +180,31 @@ namespace _3101_tarea1_mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            List<SelectListItem> DropDownEscuela = _context.Escuelas.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+            carreraModel.OpEscuela = DropDownEscuela;
             return View(carreraModel);
         }
 
         // GET: Carrera/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.CarreraModel == null)
+            if (id == null || _context.Carreras == null)
             {
                 return NotFound();
             }
 
             var carreraModel = await _context.Carreras.Select(x => new CarreraModel
             {
-                id = x.Id,
-                codigo = x.Codigo,
-                nombre = x.Nombre,
-                idEscuela = x.IdEscuela
-            }).FirstOrDefaultAsync(m => m.id == id);
+                Id = x.Id,
+                Codigo = x.Codigo,
+                Nombre = x.Nombre,
+                IdEscuela = x.IdEscuela
+            }).FirstOrDefaultAsync(m => m.Id == id);
             if (carreraModel == null)
             {
                 return NotFound();
