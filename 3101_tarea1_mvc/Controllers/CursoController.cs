@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _3101_tarea1_mvc.Data;
 using _3101_tarea1_mvc.Models;
+using _3101_tarea1_mvc.Entities;
 
 namespace _3101_tarea1_mvc.Controllers
 {
@@ -22,9 +23,25 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Curso
         public async Task<IActionResult> Index()
         {
-              return _context.CursoModel != null ? 
-                          View(await _context.CursoModel.ToListAsync()) :
-                          Problem("Entity set 'UniversidadContext.CursoModel'  is null.");
+            List<SelectListItem> DropDownCarrera = _context.Carreras.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
+            return _context.CursoModel != null ? 
+                          View(await _context.Cursos.Include(x => x.IdCarreraNavigation).Select(x => new CursoModel
+                          {
+                              Id = x.Id,
+                              Codigo = x.Codigo,
+                              Nombre = x.Nombre!,
+                              Descripcion = x.Descripcion,
+                              IdCarrera = x.IdCarrera,
+                              Precio = x.Precio,
+                              NombreCarrera = x.IdCarreraNavigation.Nombre,
+                              ListaCarrera = DropDownCarrera
+                          }).ToListAsync()) :
+                          Problem("Entity set 'UniversidadContext.Cursos'  is null.");
         }
 
         // GET: Curso/Details/5
@@ -35,11 +52,32 @@ namespace _3101_tarea1_mvc.Controllers
                 return NotFound();
             }
 
-            var cursoModel = await _context.CursoModel
-                .FirstOrDefaultAsync(m => m.id == id);
+            List<SelectListItem> DropDownCarrera = _context.Carreras.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
+            var cursoModel = await _context.Cursos.Include(x => x.IdCarreraNavigation).Select(x => new CursoModel
+            {
+                Id = x.Id,
+                Codigo = x.Codigo,
+                Nombre = x.Nombre!,
+                Descripcion = x.Descripcion!,
+                IdCarrera = x.IdCarrera,
+                Precio = x.Precio,
+                NombreCarrera = x.IdCarreraNavigation.Nombre,
+                ListaCarrera = DropDownCarrera
+            }).FirstOrDefaultAsync(m => m.Id == id);
+
             if (cursoModel == null)
             {
                 return NotFound();
+            }
+
+            if (cursoModel.Descripcion == null)
+            {
+                cursoModel.Descripcion = "";
             }
 
             return View(cursoModel);
@@ -48,7 +86,17 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Curso/Create
         public IActionResult Create()
         {
-            return View();
+            List<SelectListItem> DropDownCarrera = _context.Carreras.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
+            var cursoModel = new CursoModel
+            {
+                ListaCarrera = DropDownCarrera
+            };
+            return View(cursoModel);
         }
 
         // POST: Curso/Create
@@ -56,11 +104,25 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,codigo,nombre,descripcion,precio")] CursoModel cursoModel)
+        public async Task<IActionResult> Create([Bind("Id,Codigo,Nombre,Descripcion,IdCarrera,Precio")] CursoModel cursoModel)
         {
+            ModelState.Remove("NombreCarrera");
+            ModelState.Remove("ListaCarrera");
             if (ModelState.IsValid)
             {
-                _context.Add(cursoModel);
+                var curso = new Curso
+                {
+                    Codigo = cursoModel.Codigo,
+                    Nombre = cursoModel.Nombre!,
+                    Descripcion = cursoModel.Descripcion,
+                    IdCarrera = cursoModel.IdCarrera,
+                    Precio = cursoModel.Precio
+                };
+                if (curso.Descripcion == null)
+                {
+                    curso.Descripcion = "";
+                }
+                _context.Add(curso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -75,10 +137,33 @@ namespace _3101_tarea1_mvc.Controllers
                 return NotFound();
             }
 
-            var cursoModel = await _context.CursoModel.FindAsync(id);
-            if (cursoModel == null)
+            var curso = await _context.Cursos.FindAsync(id);
+
+            if (curso == null)
             {
                 return NotFound();
+            }
+
+            List<SelectListItem> DropDownCarrera = _context.Carreras.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Nombre
+            }).ToList();
+
+            var cursoModel = new CursoModel
+            {
+                Id = curso.Id,
+                Codigo = curso.Codigo,
+                Nombre = curso.Nombre,
+                Descripcion = curso.Descripcion!,
+                IdCarrera = curso.IdCarrera,
+                Precio = curso.Precio,
+                ListaCarrera = DropDownCarrera
+            };
+
+            if (cursoModel.Descripcion == null)
+            {
+                cursoModel.Descripcion = "";
             }
             return View(cursoModel);
         }
@@ -88,23 +173,39 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,codigo,nombre,descripcion,precio")] CursoModel cursoModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Codigo,Nombre,Descripcion,IdCarrera,Precio")] CursoModel cursoModel)
         {
-            if (id != cursoModel.id)
+            if (id != cursoModel.Id)
             {
                 return NotFound();
             }
 
+            ModelState.Remove("NombreCarrera");
+            ModelState.Remove("ListaCarrera");
+
             if (ModelState.IsValid)
             {
+                var curso = new Curso
+                {
+                    Id = cursoModel.Id,
+                    Codigo = cursoModel.Codigo,
+                    Nombre = cursoModel.Nombre!,
+                    Descripcion = cursoModel.Descripcion,
+                    IdCarrera = cursoModel.IdCarrera,
+                    Precio = cursoModel.Precio
+                };
+                if (curso.Descripcion == null)
+                {
+                    curso.Descripcion = "";
+                }
                 try
                 {
-                    _context.Update(cursoModel);
+                    _context.Update(curso);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CursoModelExists(cursoModel.id))
+                    if (!CursoModelExists(cursoModel.Id))
                     {
                         return NotFound();
                     }
@@ -126,11 +227,22 @@ namespace _3101_tarea1_mvc.Controllers
                 return NotFound();
             }
 
-            var cursoModel = await _context.CursoModel
-                .FirstOrDefaultAsync(m => m.id == id);
+            var cursoModel = await _context.Cursos.Select(x => new CursoModel
+            {
+                Id = x.Id,
+                Codigo = x.Codigo,
+                Nombre = x.Nombre!,
+                Descripcion = x.Descripcion!,
+                IdCarrera = x.IdCarrera,
+                Precio = x.Precio
+            }).FirstOrDefaultAsync(m => m.Id == id);
             if (cursoModel == null)
             {
                 return NotFound();
+            }
+            if (cursoModel.Descripcion == null)
+            {
+                cursoModel.Descripcion = "";
             }
 
             return View(cursoModel);
@@ -143,12 +255,12 @@ namespace _3101_tarea1_mvc.Controllers
         {
             if (_context.CursoModel == null)
             {
-                return Problem("Entity set 'UniversidadContext.CursoModel'  is null.");
+                return Problem("Entity set 'UniversidadContext.Curso'  is null.");
             }
-            var cursoModel = await _context.CursoModel.FindAsync(id);
-            if (cursoModel != null)
+            var curso = await _context.Cursos.FindAsync(id);
+            if (curso != null)
             {
-                _context.CursoModel.Remove(cursoModel);
+                _context.Cursos.Remove(curso);
             }
             
             await _context.SaveChangesAsync();
@@ -157,7 +269,7 @@ namespace _3101_tarea1_mvc.Controllers
 
         private bool CursoModelExists(int id)
         {
-          return (_context.CursoModel?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.CursoModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

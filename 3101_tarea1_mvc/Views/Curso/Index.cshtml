@@ -1,28 +1,31 @@
 @model IEnumerable<_3101_tarea1_mvc.Models.CursoModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gestión de Cursos";
 }
 
-<h1>Index</h1>
+<h1>Cursos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo curso</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.codigo)
+                @Html.DisplayNameFor(model => model.Codigo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.descripcion)
+                @Html.DisplayNameFor(model => model.NombreCarrera)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.precio)
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
             </th>
             <th></th>
         </tr>
@@ -31,21 +34,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.codigo)
+                @Html.DisplayFor(modelItem => item.Codigo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
+                @Html.DisplayFor(modelItem => item.NombreCarrera)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.precio)
+                @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modificar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ver detalle</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }

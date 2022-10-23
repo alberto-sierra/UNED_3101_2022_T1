@@ -14,7 +14,7 @@ namespace _3101_tarea1_mvc.Entities
         public string Codigo { get; set; } = null!;
         public string Nombre { get; set; } = null!;
         public string? Descripcion { get; set; }
-        public int? IdCarrera { get; set; }
+        public int IdCarrera { get; set; }
         public decimal Precio { get; set; }
 
         public virtual Carrera? IdCarreraNavigation { get; set; }
