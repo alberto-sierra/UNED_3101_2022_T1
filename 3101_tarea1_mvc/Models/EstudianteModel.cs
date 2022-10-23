@@ -8,37 +8,37 @@ namespace _3101_tarea1_mvc.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long id { get; set; }
+        public long Id { get; set; }
 
         [RegularExpression(@"[0-9]{9}$")]
         [StringLength(9)]
         [Required]
         [Display(Name = "Cédula")]
-        public string identificacion { get; set; }
+        public string Identificacion { get; set; }
 
         [Required]
         [Display(Name = "Nombre")]
         [StringLength(50, MinimumLength = 2)]
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Required]
         [Display(Name = "Primer Apellido")]
         [StringLength(50, MinimumLength = 2)]
-        public string primerApellido { get; set; }
+        public string PrimerApellido { get; set; }
 
         [Required]
         [Display(Name = "Segundo Apellido")]
         [StringLength(50, MinimumLength = 2)]
-        public string segundoApellido { get; set; }
+        public string SegundoApellido { get; set; }
 
         [Required]
         [Display(Name = "Fecha de Nacimiento")]
         [DataType(DataType.Date)]
-        public DateTime fechaNacimiento { get; set; }
+        public DateTime FechaNacimiento { get; set; }
 
         [Required]
         [Display(Name = "Fecha de Ingreso")]
         [DataType(DataType.Date)]
-        public DateTime? fechaIngreso { get; set; }
+        public DateTime? FechaIngreso { get; set; }
     }
 }

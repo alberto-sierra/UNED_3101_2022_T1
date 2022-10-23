@@ -1,34 +1,34 @@
 @model IEnumerable<_3101_tarea1_mvc.Models.EstudianteModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gestión de Estudiantes";
 }
 
-<h1>Index</h1>
+<h1>Estudiantes</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Estudiante</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.identificacion)
+                @Html.DisplayNameFor(model => model.Identificacion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.primerApellido)
+                @Html.DisplayNameFor(model => model.PrimerApellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.segundoApellido)
+                @Html.DisplayNameFor(model => model.SegundoApellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechaNacimiento)
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechaIngreso)
+                @Html.DisplayNameFor(model => model.FechaIngreso)
             </th>
             <th></th>
         </tr>
@@ -37,27 +37,27 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.identificacion)
+                @Html.DisplayFor(modelItem => item.Identificacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.primerApellido)
+                @Html.DisplayFor(modelItem => item.PrimerApellido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.segundoApellido)
+                @Html.DisplayFor(modelItem => item.SegundoApellido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fechaNacimiento)
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fechaIngreso)
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modificar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ver Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }
