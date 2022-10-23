@@ -11,7 +11,7 @@ namespace _3101_tarea1_mvc.Entities
         }
 
         public int Id { get; set; }
-        public long? IdEstudiante { get; set; }
+        public long IdEstudiante { get; set; }
         public DateTime Fecha { get; set; }
 
         public virtual Estudiante? IdEstudianteNavigation { get; set; }

@@ -1,19 +1,28 @@
 @model IEnumerable<_3101_tarea1_mvc.Models.MatriculaModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gestión de Matricula";
 }
 
-<h1>Index</h1>
+<h1>Matriculas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Matricula</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.fecha)
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEstudiante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEstudiante)
             </th>
             <th></th>
         </tr>
@@ -22,12 +31,20 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEstudiante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEstudiante)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Ver detalle</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }

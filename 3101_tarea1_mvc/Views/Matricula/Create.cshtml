@@ -1,31 +1,35 @@
 @model _3101_tarea1_mvc.Models.MatriculaModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Gestión de Matricula";
 }
 
-<h1>Create</h1>
+<h1>Crear nueva matricula</h1>
 
-<h4>MatriculaModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="fecha" class="control-label"></label>
-                <input asp-for="fecha" class="form-control" />
-                <span asp-validation-for="fecha" class="text-danger"></span>
+                <label asp-for="IdEstudiante" class="control-label"></label>
+                <input asp-for="IdEstudiante" class="form-control" />
+                <span asp-validation-for="IdEstudiante" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar</a>
 </div>
 
 @section Scripts {
