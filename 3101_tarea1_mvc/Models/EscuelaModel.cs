@@ -8,17 +8,17 @@ namespace _3101_tarea1_mvc.Models
     public class EscuelaModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        [StringLength(5)]
+        [StringLength(5, MinimumLength = 2)]
         [Required]
         [Display(Name = "Código")]
-        public string codigo { get; set; }
+        public string Codigo { get; set; }
 
         [StringLength(100, MinimumLength = 5)]
         [Required]
         [Display(Name = "Nombre")]
-        public string nombre { get; set; }
+        public string Nombre { get; set; } 
     }
 }
 

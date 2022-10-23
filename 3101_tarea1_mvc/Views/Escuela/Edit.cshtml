@@ -1,37 +1,36 @@
 @model _3101_tarea1_mvc.Models.EscuelaModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Gestión de Escuelas";
 }
 
-<h1>Edit</h1>
+<h1>Modificar</h1>
 
-<h4>EscuelaModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id" />
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="codigo" class="control-label"></label>
-                <input asp-for="codigo" class="form-control" />
-                <span asp-validation-for="codigo" class="text-danger"></span>
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="nombre" class="control-label"></label>
-                <input asp-for="nombre" class="form-control" />
-                <span asp-validation-for="nombre" class="text-danger"></span>
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar</a>
 </div>
 
 @section Scripts {

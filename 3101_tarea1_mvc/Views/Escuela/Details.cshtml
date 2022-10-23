@@ -1,30 +1,28 @@
 @model _3101_tarea1_mvc.Models.EscuelaModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Gestión de Escuelas";
 }
 
-<h1>Details</h1>
+<h1>Detalle de Escuela @Html.DisplayFor(model => model.Nombre)</h1>
 
 <div>
-    <h4>EscuelaModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.codigo)
+            @Html.DisplayNameFor(model => model.Codigo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.codigo)
+            @Html.DisplayFor(model => model.Codigo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.Nombre)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.Nombre)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar</a>
 </div>
