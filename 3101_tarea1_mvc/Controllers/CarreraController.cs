@@ -37,7 +37,7 @@ namespace _3101_tarea1_mvc.Controllers
                     Codigo = x.Codigo,
                     Nombre = x.Nombre!,
                     NombreEscuela = x.IdEscuelaNavigation.Nombre,
-                    OpEscuela = DropDownEscuela
+                    ListaEscuela = DropDownEscuela
                 }).ToListAsync();
 
             return View(carreraModel);
@@ -78,7 +78,7 @@ namespace _3101_tarea1_mvc.Controllers
 
             var carreraModel = new CarreraModel
             {
-                OpEscuela = DropDownEscuela
+                ListaEscuela = DropDownEscuela
             };
 
             return View(carreraModel);
@@ -91,7 +91,7 @@ namespace _3101_tarea1_mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Codigo,Nombre,IdEscuela")] CarreraModel carreraModel)
         {
-            ModelState.Remove("OpEscuela");
+            ModelState.Remove("ListaEscuela");
             ModelState.Remove("NombreEscuela");
             if (ModelState.IsValid)
             {
@@ -134,7 +134,7 @@ namespace _3101_tarea1_mvc.Controllers
                 Codigo = carrera.Codigo,
                 Nombre = carrera.Nombre,
                 IdEscuela = carrera.IdEscuela,
-                OpEscuela = DropDownEscuela
+                ListaEscuela = DropDownEscuela
             };
             return View(carreraModel);
         }
@@ -151,7 +151,7 @@ namespace _3101_tarea1_mvc.Controllers
                 return NotFound();
             }
 
-            ModelState.Remove("OpEscuela");
+            ModelState.Remove("ListaEscuela");
             ModelState.Remove("NombreEscuela");
             if (ModelState.IsValid)
             {
@@ -186,7 +186,7 @@ namespace _3101_tarea1_mvc.Controllers
                 Value = x.Id.ToString(),
                 Text = x.Nombre
             }).ToList();
-            carreraModel.OpEscuela = DropDownEscuela;
+            carreraModel.ListaEscuela = DropDownEscuela;
             return View(carreraModel);
         }
 

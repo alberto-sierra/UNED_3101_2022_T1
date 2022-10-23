@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label asp-for="IdEscuela" class="control-label"></label>
-                <select asp-for="IdEscuela" class="form-control" asp-items="@Model.OpEscuela">
+                <select asp-for="IdEscuela" class="form-control" asp-items="@Model.ListaEscuela">
                     <option value="">Seleccione la Escuela</option>
                 </select>
                 <span asp-validation-for="IdEscuela" class="text-danger" />

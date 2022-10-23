@@ -30,7 +30,7 @@ namespace _3101_tarea1_mvc.Models
         public string NombreEscuela { get; set; }
 
         [NotMapped]
-        public List<SelectListItem> OpEscuela { get; set; }
+        public List<SelectListItem> ListaEscuela { get; set; }
 
     }
 }
