@@ -41,6 +41,9 @@
             <th>
                 Nombre de la Materia
             </th>
+            <th>
+                Precio
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -54,8 +57,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.IdCursoNavigation.Nombre)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCursoNavigation.Precio)
+                </td>
             </tr>
         }
+    <tr></tr>
+    <tr>
+        <td></td>
+        <td><strong>Total:</strong></td>
+        <td><strong>@Html.DisplayFor(model => model.Total)</strong></td>
+    </tr>
     </tbody>
 </table>
 

@@ -73,7 +73,7 @@ namespace _3101_tarea1_mvc.Controllers
                 NombreEstudiante = $"{x.IdEstudianteNavigation.Nombre}" + " " +
                     $"{x.IdEstudianteNavigation.PrimerApellido}" + " " +
                     $"{x.IdEstudianteNavigation.SegundoApellido}",
-                IdEstudianteValue = x.IdEstudianteNavigation.Identificacion
+                IdEstudianteValue = x.IdEstudianteNavigation.Identificacion,
              })
             .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -82,6 +82,13 @@ namespace _3101_tarea1_mvc.Controllers
                 return NotFound();
             }
 
+            decimal total = 0;
+            foreach (var item in matriculaDetalleModel)
+            {
+                total += item.IdCursoNavigation.Precio;
+            }
+
+            matriculaModel.Total = total;
             matriculaModel.MatriculaDetalles = matriculaDetalleModel;
 
             return View(matriculaModel);

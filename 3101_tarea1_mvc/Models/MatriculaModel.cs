@@ -28,6 +28,10 @@ namespace _3101_tarea1_mvc.Models
         [Display(Name = "Identificación del Estudiante")]
         public string IdEstudianteValue { get; set; }
 
+        [Display(Name = "Total")]
+        [Column(TypeName = "money")]
+        public decimal Total { get; set; }
+
         public Estudiante? IdEstudianteNavigation { get; set; }
         public ICollection<MatriculaDetalle>? MatriculaDetalles { get; set; }
 
