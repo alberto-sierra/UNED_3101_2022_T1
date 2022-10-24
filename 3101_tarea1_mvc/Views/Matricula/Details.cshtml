@@ -12,36 +12,53 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Fecha)
         </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEstudianteNavigation.Nombre)
-        </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEstudianteNavigation.PrimerApellido)
-        </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEstudianteNavigation.SegundoApellido)
-        </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEstudianteNavigation.Identificacion)
-        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Fecha)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdEstudianteValue)
+        </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdEstudianteNavigation.Nombre)
+            @Html.DisplayFor(model => model.IdEstudianteValue)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreEstudiante)
+        </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdEstudianteNavigation.PrimerApellido)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdEstudianteNavigation.SegundoApellido)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdEstudianteNavigation.Identificacion)
+            @Html.DisplayFor(model => model.NombreEstudiante)
         </dd>
     </dl>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código de Materia
+            </th>
+            <th>
+                Nombre de la Materia
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MatriculaDetalles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCursoNavigation.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCursoNavigation.Nombre)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Guardar</a> |
     <a asp-action="Index">Regresar</a>
 </div>

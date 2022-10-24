@@ -1,5 +1,15 @@
+create database universidad
+create login tarea1 with password = '_Tarea1_'
+
+use universidad
+GO
+
+create user tarea1 for login tarea1
+exec sp_addrolemember 'db_datareader', 'tarea1'
+exec sp_addrolemember 'db_datawriter', 'tarea1'
+
 create table estudiante (
-  id bigint IDENTITY(1,1) PRIMARY KEY not null,
+  id bigint IDENTITY(1,1) PRIMARY KEY NOT NULL,
   identificacion varchar(9) UNIQUE NOT NULL,
   nombre varchar(50) NOT NULL,
   primerApellido varchar(50) NOT NULL,
@@ -7,6 +17,7 @@ create table estudiante (
   fechaNacimiento datetime NOT NULL,
   fechaIngreso datetime
 )
+
 
 create table escuela (
   id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -17,7 +28,7 @@ create table escuela (
 create table carrera (
   id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
   codigo varchar(5) UNIQUE NOT NULL,
-  idEscuela varchar(5) FOREIGN KEY REFERENCES escuela(id),
+  idEscuela int NOT NULL FOREIGN KEY REFERENCES escuela(id),
   nombre varchar(100)
 )
 
@@ -26,13 +37,13 @@ create table curso (
   codigo varchar(5) UNIQUE NOT NULL,
   nombre varchar(100) NOT NULL,
   descripcion varchar(255),
-  idCarrera int FOREIGN KEY REFERENCES carrera(id),
+  idCarrera int NOT NULL FOREIGN KEY REFERENCES carrera(id),
   precio money NOT NULL
 )
 
 create table matricula (
   id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-  idEstudiante varchar(9) FOREIGN KEY REFERENCES estudiante(id),
+  idEstudiante bigint FOREIGN KEY REFERENCES estudiante(id),
   fecha datetime NOT NULL
 )
 
@@ -41,6 +52,8 @@ create table matricula_detalle (
   idMatricula int FOREIGN KEY REFERENCES matricula(id),
   idCurso int FOREIGN KEY REFERENCES curso(id),
 )
+
+---
 
 insert into estudiante values ('800910533', 'Alberto', 'Sierra', 'Reales', '1981-09-29 00:00:00', GETDATE())
 
@@ -52,27 +65,16 @@ insert into escuela values ('10', 'Ciencias de la Administración'),
 insert into carrera values ('88', '30', 'Bachillerato en Ingeniería informática'),
   ('90', '30', 'Licenciatura en Desarrollo Web')
 
-insert into estado_descripcion values (1, 'abierto'),
-  (8, 'cerrado'),
-  (16, 'matriculado'),
-  (24, 'retirado'),
-  (32, 'aprobado'),
-  (40, 'reprobado'),
-  (48, 'pagado'),
-  (56, 'pendiente')
-
 insert into curso values ('03101', 'Programación Avanzada en Web', 'Programación Web C#', '90', 1, 70000),
   ('00831', 'Programación I', 'Introducción a la Programación', '88', 1, 50000),
   ('00824', 'Programación II', 'Programación Intermedia', '88', 8, 50000),
   ('00826', 'Bases de Datos I', 'Bases de datos', '88', 1, 50000),
   ('03084', 'Bases de Datos II', 'Bases de datos', '90', 8, 70000)
 
-insert into dbo.matricula values ('800910533', GETDATE(), '202203', 56, 0)
+insert into dbo.matricula values (3, GETDATE())
 
-insert into dbo.matricula_detalle values (1, '03101')
-update dbo.matricula
-	SET total = total + (SELECT precio FROM dbo.curso WHERE codigo = '03101')
-where id = 1
+insert into dbo.matricula_detalle values (1, '03101'), (1, '00824')
+
 
 
 -- lista de estudiantes matriculados por curso

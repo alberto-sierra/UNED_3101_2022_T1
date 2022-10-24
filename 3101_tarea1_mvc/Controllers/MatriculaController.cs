@@ -33,9 +33,10 @@ namespace _3101_tarea1_mvc.Controllers
                               Id = x.Id,
                               IdEstudiante = x.IdEstudiante,
                               Fecha = x.Fecha,
-                              NombreEstudiante = $"{x.IdEstudianteNavigation.Nombre}" +
-                                $"{x.IdEstudianteNavigation.PrimerApellido}" +
+                              NombreEstudiante = $"{x.IdEstudianteNavigation.Nombre}" + " " +
+                                $"{x.IdEstudianteNavigation.PrimerApellido}" + " " +
                                 $"{x.IdEstudianteNavigation.SegundoApellido}",
+                              IdEstudianteValue = x.IdEstudianteNavigation.Identificacion
                           })
                           .ToListAsync()) :
                           Problem("Entity set 'UniversidadContext.Matriculas'  is null.");
@@ -48,21 +49,40 @@ namespace _3101_tarea1_mvc.Controllers
             {
                 return NotFound();
             }
+            
+            var matriculaDetalleModel = await _context.MatriculaDetalles
+                .Where(x => x.IdMatricula == id.Value)
+                .Include(x => x.IdCursoNavigation)
+                .Select(x => new MatriculaDetalle
+                {
+                    Id = x.Id,
+                    IdCurso = (int)x.IdCurso,
+                    IdMatricula = (int)x.IdMatricula,
+                    IdCursoNavigation = x.IdCursoNavigation
+                })
+                .ToListAsync();
+              
 
             var matriculaModel = await _context.Matriculas
                 .Include(x => x.IdEstudianteNavigation)
-                .Include(x => x.MatriculaDetalles)
                 .Select(x => new MatriculaModel
             {
                 Id = x.Id,
                 IdEstudiante = x.IdEstudiante,
-                Fecha = x.Fecha
-            })
+                Fecha = x.Fecha,
+                NombreEstudiante = $"{x.IdEstudianteNavigation.Nombre}" + " " +
+                    $"{x.IdEstudianteNavigation.PrimerApellido}" + " " +
+                    $"{x.IdEstudianteNavigation.SegundoApellido}",
+                IdEstudianteValue = x.IdEstudianteNavigation.Identificacion
+             })
             .FirstOrDefaultAsync(m => m.Id == id);
+
             if (matriculaModel == null)
             {
                 return NotFound();
             }
+
+            matriculaModel.MatriculaDetalles = matriculaDetalleModel;
 
             return View(matriculaModel);
         }
@@ -78,7 +98,7 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,fecha")] MatriculaModel matriculaModel)
+        public async Task<IActionResult> Create([Bind("Id,IdEstudiante,Fecha")] MatriculaModel matriculaModel)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +147,27 @@ namespace _3101_tarea1_mvc.Controllers
             {
                 return Problem("Entity set 'UniversidadContext.Matriculas'  is null.");
             }
+
+            // Delete MatriculaDetalle first
+            var matriculaDetalleModel = await _context.MatriculaDetalles
+                .Where(x => x.IdMatricula == id)
+                .Include(x => x.IdCursoNavigation)
+                .Select(x => new MatriculaDetalle
+                {
+                    Id = x.Id,
+                    IdCurso = (int)x.IdCurso,
+                    IdMatricula = (int)x.IdMatricula,
+                })
+                .ToListAsync();
+
+            foreach (var item in matriculaDetalleModel)
+            {
+                if (item != null)
+                {
+                    _context.MatriculaDetalles.Remove(item);
+                }
+            }
+
             var matricula = await _context.Matriculas.FindAsync(id);
             if (matricula != null)
             {

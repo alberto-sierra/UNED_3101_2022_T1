@@ -8,13 +8,13 @@ namespace _3101_tarea1_mvc.Models
     public class MatriculaDetalleModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("matricula")]
-        public int idMatricula { get; set; }
+        public int IdMatricula { get; set; }
 
         [ForeignKey("curso")]
-        public int idCurso { get; set; }
+        public int IdCurso { get; set; }
     }
 }
 

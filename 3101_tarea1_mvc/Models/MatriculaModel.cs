@@ -25,6 +25,9 @@ namespace _3101_tarea1_mvc.Models
         [Display(Name = "Nombre del Estudiante")]
         public string NombreEstudiante { get; set; }
 
+        [Display(Name = "Identificación del Estudiante")]
+        public string IdEstudianteValue { get; set; }
+
         public Estudiante? IdEstudianteNavigation { get; set; }
         public ICollection<MatriculaDetalle>? MatriculaDetalles { get; set; }
 
