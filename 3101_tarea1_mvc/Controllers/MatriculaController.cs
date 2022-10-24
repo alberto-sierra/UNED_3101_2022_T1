@@ -105,14 +105,24 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdEstudiante,Fecha")] MatriculaModel matriculaModel)
+        public async Task<IActionResult> Create([Bind("Id,IdEstudiante,Fecha,IdEstudianteValue")] MatriculaModel matriculaModel)
         {
+            ModelState.Remove("NombreEstudiante");
             if (ModelState.IsValid)
             {
+                var estudiante = _context.Estudiantes
+                    .Where(x => x.Identificacion == matriculaModel.IdEstudianteValue)
+                    .FirstOrDefault();
+
+                if (estudiante == null)
+                {
+                    ViewBag.mensaje = "Estudiante no encontrado.";
+                    return View();
+                }
+
                 var matricula = new Matricula
                 {
-                    Id = matriculaModel.Id,
-                    IdEstudiante = matriculaModel.IdEstudiante,
+                    IdEstudiante = estudiante.Id,
                     Fecha = matriculaModel.Fecha
                 };
                 _context.Add(matricula);
@@ -189,5 +199,44 @@ namespace _3101_tarea1_mvc.Controllers
         {
           return (_context.Matriculas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        // GET: Matricula/AddCurso
+        public IActionResult AddCurso(int id)
+        {
+            var matriculaDetalleModel = new MatriculaDetalleModel
+            {
+                IdMatricula = id
+            };
+            return View(matriculaDetalleModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCurso([Bind("Id,CodigoCurso,IdMatricula")] MatriculaDetalleModel matriculaDetalleModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var curso = _context.Cursos
+                    .Where(x => x.Codigo == matriculaDetalleModel.CodigoCurso)
+                    .FirstOrDefault();
+
+                if (curso == null)
+                {
+                    ViewBag.mensaje = "Curso no encontrado.";
+                    return View();
+                }
+
+                var matriculaDetalle = new MatriculaDetalle
+                {
+                    IdMatricula = matriculaDetalleModel.IdMatricula,
+                    IdCurso = curso.Id
+                };
+                _context.Add(matriculaDetalle);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(matriculaDetalleModel);
+        }
     }
+
 }

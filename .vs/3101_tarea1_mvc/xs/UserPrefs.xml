@@ -1,15 +1,19 @@
-﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default">
+﻿<Properties StartupConfiguration="{C2476AB7-0358-4967-9F4B-8EAE00064E38}|Default" GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="3101_tarea1_mvc/Controllers/MatriculaController.cs">
     <Files>
-      <File FileName="3101_tarea1_mvc/Controllers/CarreraController.cs" Line="139" Column="1" />
-      <File FileName="3101_tarea1_mvc/Entities/Matricula.cs" Line="18" Column="85" />
-      <File FileName="3101_tarea1_mvc/Models/MatriculaModel.cs" Line="32" Column="27" />
-      <File FileName="3101_tarea1_mvc/Controllers/MatriculaController.cs" Line="163" Column="36" />
-      <File FileName="3101_tarea1_mvc/Models/CarreraModel.cs" Line="32" Column="9" />
-      <File FileName="3101_tarea1_mvc/Views/Matricula/Index.cshtml" Line="1" Column="1" />
-      <File FileName="3101_tarea1_mvc/Views/Carrera/Index.cshtml" Line="12" Column="1" />
-      <File FileName="3101_tarea1_mvc/Views/Matricula/Details.cshtml" Line="23" Column="62" />
-      <File FileName="3101_tarea1_mvc/Models/MatriculaDetalleModel.cs" Line="21" Column="1" />
+      <File FileName="3101_tarea1_mvc/Controllers/MatriculaController.cs" Line="215" Column="58" />
+      <File FileName="3101_tarea1_mvc/Views/Matricula/Delete.cshtml" Line="15" Column="50" />
+      <File FileName="3101_tarea1_mvc/Models/CarreraModel.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Controllers/CarreraController.cs" Line="94" Column="13" />
+      <File FileName="3101_tarea1_mvc/Data/UniversidadContext.cs" Line="33" Column="1" />
+      <File FileName="3101_tarea1_mvc/Views/Matricula/Index.cshtml" Line="34" Column="54" />
+      <File FileName="3101_tarea1_mvc/Views/Matricula/AddCurso.cshtml" Line="27" Column="16" />
+      <File FileName="3101_tarea1_mvc/Entities/MatriculaDetalle.cs" Line="6" Column="26" />
+      <File FileName="3101_tarea1_mvc/Controllers/EstudianteController.cs" Line="1" Column="1" />
+      <File FileName="3101_tarea1_mvc/Models/MatriculaDetalleModel.cs" Line="23" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,11 +25,6 @@
               <Node name="Entities" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Carrera" expanded="True" />
-                <Node name="Curso" expanded="True" />
-                <Node name="Escuela" expanded="True" />
-                <Node name="Estudiante" expanded="True" />
-                <Node name="Home" expanded="True" />
                 <Node name="Matricula" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
@@ -39,16 +38,14 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.3101__tarea1__mvc PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Controllers/EscuelaController.cs" relfile="3101_tarea1_mvc/Controllers/EscuelaController.cs" line="71" column="1" />
       <Breakpoint file="/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Controllers/CursoController.cs" relfile="3101_tarea1_mvc/Controllers/CursoController.cs" line="111" column="1" />
       <Breakpoint file="/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Controllers/CursoController.cs" relfile="3101_tarea1_mvc/Controllers/CursoController.cs" line="186" column="1" />
-      <Breakpoint file="/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Controllers/MatriculaController.cs" relfile="3101_tarea1_mvc/Controllers/MatriculaController.cs" line="87" column="1" />
+      <Breakpoint file="/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Controllers/MatriculaController.cs" relfile="3101_tarea1_mvc/Controllers/MatriculaController.cs" line="217" column="1" />
+      <Breakpoint file="/Users/albertux/Library/CloudStorage/OneDrive-UniversidadEstatalaDistancia/Grado/2022-III/3101 - Programación avanzada en web/3101_tarea1_mvc/3101_tarea1_mvc/Controllers/MatriculaController.cs" relfile="3101_tarea1_mvc/Controllers/MatriculaController.cs" line="235" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

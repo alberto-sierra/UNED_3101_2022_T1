@@ -43,6 +43,7 @@
                 @Html.DisplayFor(modelItem => item.NombreEstudiante)
             </td>
             <td>
+                <a asp-action="AddCurso" asp-route-id="@item.Id">Agregar curso</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Ver detalle</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>

@@ -5,6 +5,10 @@
 }
 
 <h1>Crear nueva matricula</h1>
+@if (ViewBag.mensaje != null)
+{
+    <h4>@ViewBag.mensaje</h4>
+}
 
 <hr />
 <div class="row">
@@ -12,9 +16,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdEstudiante" class="control-label"></label>
-                <input asp-for="IdEstudiante" class="form-control" />
-                <span asp-validation-for="IdEstudiante" class="text-danger"></span>
+                <label asp-for="IdEstudianteValue" class="control-label"></label>
+                <input asp-for="IdEstudianteValue" class="form-control" />
+                <span asp-validation-for="IdEstudianteValue" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>

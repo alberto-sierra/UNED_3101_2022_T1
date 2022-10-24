@@ -13,7 +13,6 @@ namespace _3101_tarea1_mvc.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
         [Display(Name = "Identificación del Estudiante")]
         public long IdEstudiante { get; set; }
 
@@ -25,6 +24,7 @@ namespace _3101_tarea1_mvc.Models
         [Display(Name = "Nombre del Estudiante")]
         public string NombreEstudiante { get; set; }
 
+        [Required]
         [Display(Name = "Identificación del Estudiante")]
         public string IdEstudianteValue { get; set; }
 
