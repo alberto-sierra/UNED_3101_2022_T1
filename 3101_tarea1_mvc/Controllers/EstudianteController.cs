@@ -23,7 +23,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Estudiante
         public async Task<IActionResult> Index()
         {
-              return _context.EstudianteModel != null ? 
+              return _context.Estudiantes != null ? 
                           View(await _context.Estudiantes.Select(x => new EstudianteModel
                           {
                               Id = x.Id,
@@ -40,7 +40,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Estudiante/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.EstudianteModel == null)
+            if (id == null || _context.Estudiantes == null)
             {
                 return NotFound();
             }
@@ -85,7 +85,7 @@ namespace _3101_tarea1_mvc.Controllers
                     PrimerApellido = estudianteModel.PrimerApellido,
                     SegundoApellido = estudianteModel.SegundoApellido,
                     FechaNacimiento = estudianteModel.FechaNacimiento,
-                    FechaIngreso = estudianteModel.FechaIngreso
+                    FechaIngreso = (DateTime)estudianteModel.FechaIngreso
                 };
                 _context.Add(estudiante);
                 await _context.SaveChangesAsync();
@@ -144,7 +144,7 @@ namespace _3101_tarea1_mvc.Controllers
                         PrimerApellido = estudianteModel.PrimerApellido,
                         SegundoApellido = estudianteModel.SegundoApellido,
                         FechaNacimiento = estudianteModel.FechaNacimiento,
-                        FechaIngreso = estudianteModel.FechaIngreso
+                        FechaIngreso = (DateTime)estudianteModel.FechaIngreso
                     };
                     _context.Update(estudiante);
                     await _context.SaveChangesAsync();
@@ -212,7 +212,7 @@ namespace _3101_tarea1_mvc.Controllers
 
         private bool EstudianteModelExists(long id)
         {
-          return (_context.EstudianteModel?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Estudiantes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

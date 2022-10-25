@@ -1,0 +1,40 @@
+﻿@model _3101_tarea1_mvc.Models.ReporteEstudiantesModel
+
+@{
+    ViewData["Title"] = "Reporte de estudiantes";
+}
+
+<h1>Reporte de estudiantes</h1>
+
+@if (ViewBag.mensaje != null)
+{
+    <h4>@ViewBag.mensaje</h4>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ReporteEstudiantesResult">
+
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class="form-control" asp-items="@Model.ListaCurso">
+                    <option value="">Seleccione el Curso</option>
+                </select>
+                <span asp-validation-for="Codigo" class="text-danger" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

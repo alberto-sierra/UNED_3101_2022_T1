@@ -111,7 +111,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Carrera/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.CarreraModel == null)
+            if (id == null || _context.Carreras == null)
             {
                 return NotFound();
             }

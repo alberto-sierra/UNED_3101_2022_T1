@@ -16,6 +16,9 @@ namespace _3101_tarea1_mvc.Models
         [ForeignKey("curso")]
         public int IdCurso { get; set; }
 
+        [StringLength(5)]
+        [Required]
+        [Display(Name = "Código Curso")]
         public string CodigoCurso { get; set; }
     }
 }

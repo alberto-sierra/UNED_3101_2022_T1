@@ -29,7 +29,7 @@ namespace _3101_tarea1_mvc.Controllers
                 Text = x.Nombre
             }).ToList();
 
-            return _context.CursoModel != null ? 
+            return _context.Cursos != null ? 
                           View(await _context.Cursos.Include(x => x.IdCarreraNavigation).Select(x => new CursoModel
                           {
                               Id = x.Id,
@@ -47,7 +47,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Curso/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.CursoModel == null)
+            if (id == null || _context.Cursos == null)
             {
                 return NotFound();
             }
@@ -132,7 +132,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Curso/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.CursoModel == null)
+            if (id == null || _context.Cursos == null)
             {
                 return NotFound();
             }
@@ -222,7 +222,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Curso/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.CursoModel == null)
+            if (id == null || _context.Cursos == null)
             {
                 return NotFound();
             }
@@ -253,7 +253,7 @@ namespace _3101_tarea1_mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.CursoModel == null)
+            if (_context.Cursos == null)
             {
                 return Problem("Entity set 'UniversidadContext.Curso'  is null.");
             }
@@ -269,7 +269,7 @@ namespace _3101_tarea1_mvc.Controllers
 
         private bool CursoModelExists(int id)
         {
-          return (_context.CursoModel?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Cursos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

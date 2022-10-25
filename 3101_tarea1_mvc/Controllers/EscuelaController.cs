@@ -23,7 +23,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Escuela
         public async Task<IActionResult> Index()
         {
-            return _context.EscuelaModel != null ?
+            return _context.Escuelas != null ?
                         View(await _context.Escuelas.Select(x => new EscuelaModel
                         {
                             Id = x.Id,
@@ -36,7 +36,7 @@ namespace _3101_tarea1_mvc.Controllers
         // GET: Escuela/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.EscuelaModel == null)
+            if (id == null || _context.Escuelas == null)
             {
                 return NotFound();
             }
@@ -110,9 +110,9 @@ namespace _3101_tarea1_mvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,codigo,nombre")] EscuelaModel escuelaModel)
+        public async Task<IActionResult> Edit(int Id, [Bind("Id,Codigo,Nombre")] EscuelaModel escuelaModel)
         {
-            if (id != escuelaModel.Id)
+            if (Id != escuelaModel.Id)
             {
                 return NotFound();
             }

@@ -13,7 +13,7 @@ namespace _3101_tarea1_mvc.Models
         [RegularExpression(@"[0-9]{9}$")]
         [StringLength(9)]
         [Required]
-        [Display(Name = "Cédula")]
+        [Display(Name = "Identificación")]
         public string Identificacion { get; set; }
 
         [Required]

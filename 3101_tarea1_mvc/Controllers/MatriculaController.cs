@@ -210,9 +210,10 @@ namespace _3101_tarea1_mvc.Controllers
             return View(matriculaDetalleModel);
         }
 
+        // POST: Matricula/AddCurso
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddCurso([Bind("Id,CodigoCurso,IdMatricula")] MatriculaDetalleModel matriculaDetalleModel)
+        public async Task<IActionResult> AddCurso([Bind("Id,CodigoCurso")] MatriculaDetalleModel matriculaDetalleModel)
         {
             if (ModelState.IsValid)
             {
@@ -228,8 +229,8 @@ namespace _3101_tarea1_mvc.Controllers
 
                 var matriculaDetalle = new MatriculaDetalle
                 {
-                    IdMatricula = matriculaDetalleModel.IdMatricula,
-                    IdCurso = curso.Id
+                    IdCurso = curso.Id,
+                    IdMatricula = matriculaDetalleModel.Id
                 };
                 _context.Add(matriculaDetalle);
                 await _context.SaveChangesAsync();
