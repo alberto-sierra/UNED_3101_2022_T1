@@ -17,7 +17,7 @@ namespace _3101_tarea1_mvc.Entities
         public int IdCarrera { get; set; }
         public decimal Precio { get; set; }
 
-        public virtual Carrera? IdCarreraNavigation { get; set; }
+        public virtual Carrera IdCarreraNavigation { get; set; } = null!;
         public virtual ICollection<MatriculaDetalle> MatriculaDetalles { get; set; }
     }
 }

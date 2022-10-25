@@ -12,7 +12,7 @@ namespace _3101_tarea1_mvc.Entities
 
         public int Id { get; set; }
         public string Codigo { get; set; } = null!;
-        public string? Nombre { get; set; }
+        public string Nombre { get; set; } = null!;
 
         public virtual ICollection<Carrera> Carreras { get; set; }
     }

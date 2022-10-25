@@ -16,7 +16,7 @@ namespace _3101_tarea1_mvc.Entities
         public string PrimerApellido { get; set; } = null!;
         public string SegundoApellido { get; set; } = null!;
         public DateTime FechaNacimiento { get; set; }
-        public DateTime? FechaIngreso { get; set; }
+        public DateTime FechaIngreso { get; set; }
 
         public virtual ICollection<Matricula> Matriculas { get; set; }
     }

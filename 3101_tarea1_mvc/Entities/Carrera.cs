@@ -13,9 +13,9 @@ namespace _3101_tarea1_mvc.Entities
         public int Id { get; set; }
         public string Codigo { get; set; } = null!;
         public int IdEscuela { get; set; }
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = null!;
 
-        public virtual Escuela? IdEscuelaNavigation { get; set; }
-        public virtual ICollection<Curso>? Cursos { get; set; }
+        public virtual Escuela IdEscuelaNavigation { get; set; } = null!;
+        public virtual ICollection<Curso> Cursos { get; set; }
     }
 }

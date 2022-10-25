@@ -29,6 +29,7 @@ namespace _3101_tarea1_mvc.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+
             }
         }
 
@@ -38,7 +39,7 @@ namespace _3101_tarea1_mvc.Data
             {
                 entity.ToTable("carrera");
 
-                entity.HasIndex(e => e.Codigo, "UQ__carrera__40F9A2062ACECE8E")
+                entity.HasIndex(e => e.Codigo, "UQ__carrera__40F9A2065EB0CC33")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -58,14 +59,15 @@ namespace _3101_tarea1_mvc.Data
                 entity.HasOne(d => d.IdEscuelaNavigation)
                     .WithMany(p => p.Carreras)
                     .HasForeignKey(d => d.IdEscuela)
-                    .HasConstraintName("FK__carrera__idEscue__5070F446");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__carrera__idEscue__5629CD9C");
             });
 
             modelBuilder.Entity<Curso>(entity =>
             {
                 entity.ToTable("curso");
 
-                entity.HasIndex(e => e.Codigo, "UQ__curso__40F9A20602E4122C")
+                entity.HasIndex(e => e.Codigo, "UQ__curso__40F9A2069B023ABE")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -94,14 +96,15 @@ namespace _3101_tarea1_mvc.Data
                 entity.HasOne(d => d.IdCarreraNavigation)
                     .WithMany(p => p.Cursos)
                     .HasForeignKey(d => d.IdCarrera)
-                    .HasConstraintName("FK__curso__idCarrera__5441852A");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__curso__idCarrera__59FA5E80");
             });
 
             modelBuilder.Entity<Escuela>(entity =>
             {
                 entity.ToTable("escuela");
 
-                entity.HasIndex(e => e.Codigo, "UQ__escuela__40F9A2060E4A132E")
+                entity.HasIndex(e => e.Codigo, "UQ__escuela__40F9A20664C56C43")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -121,7 +124,7 @@ namespace _3101_tarea1_mvc.Data
             {
                 entity.ToTable("estudiante");
 
-                entity.HasIndex(e => e.Identificacion, "UQ__estudian__C196DEC7C57CE9EE")
+                entity.HasIndex(e => e.Identificacion, "UQ__estudian__C196DEC7122B3D51")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -170,7 +173,8 @@ namespace _3101_tarea1_mvc.Data
                 entity.HasOne(d => d.IdEstudianteNavigation)
                     .WithMany(p => p.Matriculas)
                     .HasForeignKey(d => d.IdEstudiante)
-                    .HasConstraintName("FK__matricula__idEst__571DF1D5");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__matricula__idEst__5CD6CB2B");
             });
 
             modelBuilder.Entity<MatriculaDetalle>(entity =>
@@ -186,27 +190,19 @@ namespace _3101_tarea1_mvc.Data
                 entity.HasOne(d => d.IdCursoNavigation)
                     .WithMany(p => p.MatriculaDetalles)
                     .HasForeignKey(d => d.IdCurso)
-                    .HasConstraintName("FK__matricula__idCur__5AEE82B9");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__matricula__idCur__60A75C0F");
 
                 entity.HasOne(d => d.IdMatriculaNavigation)
                     .WithMany(p => p.MatriculaDetalles)
                     .HasForeignKey(d => d.IdMatricula)
-                    .HasConstraintName("FK__matricula__idMat__59FA5E80");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__matricula__idMat__5FB337D6");
             });
 
             OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<_3101_tarea1_mvc.Models.CarreraModel>? CarreraModel { get; set; }
-
-        public DbSet<_3101_tarea1_mvc.Models.EstudianteModel>? EstudianteModel { get; set; }
-
-        public DbSet<_3101_tarea1_mvc.Models.CursoModel>? CursoModel { get; set; }
-
-        public DbSet<_3101_tarea1_mvc.Models.MatriculaModel>? MatriculaModel { get; set; }
-
-        public DbSet<_3101_tarea1_mvc.Models.EscuelaModel>? EscuelaModel { get; set; }
     }
 }
